@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drive KKTC</title>
+    <style>
+      :root {
+        --bg: #f7efe1;
+        --surface: #fffdf8;
+        --text: #1f2d35;
+        --muted: #64707a;
+        --accent: #0d6f68;
+        --accent-2: #c96b3b;
+        --line: #e8dccf;
+        --shadow: 0 10px 24px rgba(31, 45, 53, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(180deg, #fffaf2 0%, var(--bg) 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      .topbar {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 22px 20px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .nav {
+        display: flex;
+        gap: 16px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .hero {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 12px 20px 8px;
+      }
+
+      .hero-card {
+        background: linear-gradient(135deg, #fffaf1 0%, #f6efe3 100%);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 34px 32px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-card h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2rem, 3.6vw, 3rem);
+        line-height: 1.1;
+      }
+
+      .hero-card .lead {
+        max-width: 760px;
+        color: var(--muted);
+        font-size: 1.05rem;
+        margin: 0 0 20px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: white;
+        font-weight: 600;
+      }
+
+      .btn.secondary {
+        background: white;
+        color: var(--accent);
+        border: 1px solid var(--line);
+      }
+
+      .section {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 24px 20px 0;
+      }
+
+      .section-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .section-title h2 {
+        margin: 0;
+        font-size: 1.24rem;
+      }
+
+      .section-title p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .step {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .step .num {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: #eef5f3;
+        color: var(--accent);
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .route-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+
+      .route-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #fce8dd;
+        color: var(--accent-2);
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .route-card h3 {
+        margin: 8px 0 8px;
+        font-size: 1.15rem;
+      }
+
+      .route-card p {
+        color: var(--muted);
+        margin: 0 0 12px;
+      }
+
+      .route-card ul {
+        margin: 0 0 14px;
+        padding-left: 18px;
+        color: var(--text);
+      }
+
+      .info {
+        font-size: 0.95rem;
+        background: #f7f2e6;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid #ece2cb;
+      }
+
+      .tip {
+        margin-top: 10px;
+        padding: 10px 12px;
+        background: #f9efe0;
+        border-radius: 12px;
+        font-size: 0.95rem;
+      }
+
+      footer {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 28px 20px 40px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 800px) {
+        .steps-grid,
+        .route-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="logo">Drive KKTC</div>
+      <nav class="nav">
+        <a href="#routes">Routes</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-card">
+          <h1>Discover Northern Cyprus one route at a time.</h1>
+          <p class="lead">Drive KKTC brings together five travel routes inspired by the spirit of big travel platforms, but kept simple, local, and student-friendly.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#routes">Explore Routes</a>
+            <a class="btn secondary" href="#about">Why This Project</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-title">
+          <h2>How it works</h2>
+          <p>Pick a route, follow the stops, and enjoy the journey.</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step">
+            <div class="num">1</div>
+            <h3>Choose a route</h3>
+            <p>Start with a route that matches your mood, whether it is history, food, beach, or nightlife.</p>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <h3>Follow the stops</h3>
+            <p>Each route includes a clear list of places to visit with practical details and local suggestions.</p>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <h3>Travel with ease</h3>
+            <p>Use the route as a simple guide for a day trip, a weekend plan, or a relaxed drive around the region.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="routes">
+        <div class="section-title">
+          <h2>Most popular routes</h2>
+          <p>Five routes built around your chosen places.</p>
+        </div>
+
+        <div class="route-grid">
+          <article class="route-card">
+            <div class="pill">Education · Local Life</div>
+            <h3>European University of Lefke Route</h3>
+            <p>A calm route through campus life, town streets, and scenic countryside views.</p>
+            <ul>
+              <li>EUL Main Campus Entrance</li>
+              <li>Lefke Town Centre</li>
+              <li>Piri Mehmet Paşa Mosque</li>
+            </ul>
+            <div class="info">Practical info: Great for a half-day trip with easy parking and simple roads.</div>
+            <div class="tip">Insider tip: Early morning fruit stands near the town edge are a local favorite.</div>
+          </article>
+
+          <article class="route-card">
+            <div class="pill">Sea · Food · Sunset</div>
+            <h3>Aphrodite Beachfront Route</h3>
+            <p>A soft coastal route focused on sea views, food, and the calm of sunset hours.</p>
+            <ul>
+              <li>Aphrodite Beachfront Restaurant</li>
+              <li>Coastal Seafront Walk</li>
+              <li>Sunset Viewing Point</li>
+            </ul>
+            <div class="info">Practical info: Best enjoyed in the late afternoon when the light is at its best.</div>
+            <div class="tip">Insider tip: The side terrace seats usually give the best view.</div>
+          </article>
+
+          <article class="route-card">
+            <div class="pill">History · Views</div>
+            <h3>St. Hilarion Castle Route</h3>
+            <p>A dramatic route through old stone landscapes and one of the region’s strongest landmarks.</p>
+            <ul>
+              <li>Castle Entrance and Outer Walls</li>
+              <li>Historic Courtyard Area</li>
+              <li>Upper Terrace Views</li>
+            </ul>
+            <div class="info">Practical info: Wear comfortable shoes because the terrain can be uneven.</div>
+            <div class="tip">Insider tip: Early morning visits feel cooler and more magical.</div>
+          </article>
+
+          <article class="route-card">
+            <div class="pill">Leisure · Nightlife</div>
+            <h3>Escape Beach Club Route</h3>
+            <p>A more energetic coastal route built around beachside relaxation and evening atmosphere.</p>
+            <ul>
+              <li>Escape Beach Club Entrance</li>
+              <li>Pool and Sunbed Zone</li>
+              <li>Sunset Deck Area</li>
+            </ul>
+            <div class="info">Practical info: Best for a late afternoon plan that continues into the evening.</div>
+            <div class="tip">Insider tip: Arriving just before sunset gives the best balance of light and space.</div>
+          </article>
+
+          <article class="route-card">
+            <div class="pill">Harbour · History</div>
+            <h3>Kyrenia Harbour Route</h3>
+            <p>A lively waterfront route with boats, old streets, food, and a strong sense of place.</p>
+            <ul>
+              <li>Harbour Quay</li>
+              <li>Marina Boats and Yachts</li>
+              <li>Historic Walls and Castle Area</li>
+            </ul>
+            <div class="info">Practical info: Great for walking and easy to explore in the late afternoon.</div>
+            <div class="tip">Insider tip: The smaller side streets often hide the best cafés.</div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      Drive KKTC — a simple student-style travel guide inspired by the feel of major route websites.
+    </footer>
+  </body>
+</html>
