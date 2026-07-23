@@ -2,24 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"    <title>Drive KKTC | Northern Cyprus Adventure Planner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drive KKTC | Northern Cyprus Adventure Planner</title>
     <meta name="description" content="Discover Northern Cyprus with premium routes, family-friendly plans, teen hotspots, and real reviews from northern Cyprus." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --bg: #0a1837;
-        --bg-soft: #122048;
-        --surface: rgba(255,255,255,0.98);
-        --surface-soft: rgba(255,255,255,0.9);
-        --text: #0f172a;
-        --muted: #55687a;
+        --bg: #04111f;
+        --bg-soft: #11243a;
+        --surface: rgba(255,255,255,0.08);
+        --surface-soft: rgba(255,255,255,0.06);
+        --text: #ffffff;
+        --muted: rgba(255,255,255,0.78);
         --accent: #2563eb;
         --accent-2: #14b8a6;
         --accent-alt: #f97316;
-        --line: #dce7f1;
-        --shadow: 0 28px 70px rgba(0,0,0,0.18);
+        --line: rgba(255,255,255,0.16);
+        --shadow: 0 28px 70px rgba(0,0,0,0.32);
         --radius-lg: 30px;
         --radius-md: 18px;
       }
@@ -31,7 +32,7 @@
         min-height: 100vh;
         font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
         color: var(--text);
-        background: radial-gradient(circle at top left, rgba(37,99,235,0.16), transparent 24%), linear-gradient(135deg, #0a1837 0%, #122048 45%, #182c5a 100%);
+        background: radial-gradient(circle at top left, rgba(37,99,235,0.18), transparent 24%), linear-gradient(135deg, #04111f 0%, #11243a 45%, #171f38 100%);
       }
       img, iframe { display: block; width: 100%; }
       a { color: inherit; text-decoration: none; }
@@ -45,6 +46,18 @@
       .nav-links a { color: rgba(255,255,255,0.82); font-weight: 600; transition: color 180ms ease; }
       .nav-links a:hover { color: #fff; }
       .lang-toggle { border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.1); color: #fff; border-radius: 999px; padding: 10px 14px; cursor: pointer; }
+      .search-bar { display: flex; align-items: center; gap: 10px; flex: 1; max-width: 520px; margin-left: 30px; }
+      .search-bar input { flex: 1; min-width: 0; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.08); color: #fff; padding: 12px 16px; outline: none; }
+      .search-bar input::placeholder { color: rgba(255,255,255,0.65); }
+      .search-bar button { border-radius: 999px; border: none; padding: 12px 18px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #fff; cursor: pointer; font-weight: 700; }
+      .search-summary { margin: 18px 0 0; color: rgba(255,255,255,0.85); font-size: 0.95rem; }
+      .footer-inner { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 28px; padding: 36px 30px; color: rgba(255,255,255,0.92); margin: 42px 0 20px; }
+      .footer-inner a { color: rgba(255,255,255,0.9); text-decoration: none; }
+      .footer-inner a:hover { color: #fff; }
+      .footer-brand p, .footer-info p { margin: 10px 0 0; color: rgba(255,255,255,0.76); line-height: 1.75; }
+      .footer-links { display: flex; flex-direction: column; gap: 12px; }
+      .footer-links a { padding: 14px 18px; border-radius: 18px; background: rgba(255,255,255,0.08); }
+      .footer-info { display: flex; flex-direction: column; gap: 10px; justify-content: space-between; }
 
       .hero { padding: 28px 0 40px; }
       .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; align-items: stretch; }
@@ -52,7 +65,7 @@
       .hero-badge { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: rgba(37,99,235,0.12); color: var(--accent); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em; }
       .hero-title { margin: 0; font-family: 'Dancing Script', Georgia, serif; color: #fff; font-size: clamp(3rem, 5vw, 5.2rem); line-height: 0.96; letter-spacing: -0.04em; text-shadow: 0 20px 44px rgba(0,0,0,0.25); }
       .hero-subtitle { margin: 0; max-width: 720px; font-size: 1.05rem; color: rgba(255,255,255,0.88); line-height: 1.7; }
-      .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
       .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 0; border-radius: 999px; font-weight: 800; transition: transform 180ms ease, box-shadow 180ms ease; cursor: pointer; }
       .btn:hover { transform: translateY(-2px); }
       .btn.primary { padding: 16px 24px; color: #fff; background: linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow: 0 16px 40px rgba(37,99,235,0.18); }
@@ -66,11 +79,11 @@
       .hero-right { position: relative; min-height: 680px; border-radius: 30px; overflow: hidden; }
       .hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,22,48,0.18), rgba(6,22,48,0.44)); z-index: 1; }
       .hero-image { width: 100%; height: 100%; object-fit: cover; filter: saturate(110%); }
-      .planner-panel { position: absolute; left: 24px; right: 24px; bottom: 24px; z-index: 2; border-radius: 28px; overflow: hidden; background: rgba(255,255,255,0.98); box-shadow: 0 28px 70px rgba(0,0,0,0.22); }
-      .planner-panel header { padding: 22px 22px 18px; background: linear-gradient(135deg, rgba(37,99,235,0.12), rgba(20,184,166,0.12)); }
-      .planner-panel header h2 { margin: 0; font-size: 1.12rem; }
+      .planner-panel { position: absolute; left: 24px; right: 24px; bottom: 24px; z-index: 2; border-radius: 28px; overflow: hidden; background: rgba(20,34,58,0.96); box-shadow: 0 28px 70px rgba(0,0,0,0.35); }
+      .planner-panel header { padding: 22px 22px 18px; background: linear-gradient(135deg, rgba(37,99,235,0.16), rgba(20,184,166,0.16)); }
+      .planner-panel header h2 { margin: 0; font-size: 1.12rem; color: #fff; }
       .planner-body { padding: 20px; display: grid; gap: 14px; }
-      .planner-body select { width: 100%; padding: 14px 16px; border-radius: 16px; border: 1px solid var(--line); background: var(--surface-soft); color: var(--text); }
+      .planner-body select { width: 100%; padding: 14px 16px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: var(--text); }
       .planner-body button { width: 100%; padding: 15px 18px; border-radius: 999px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #fff; border: 0; font-weight: 800; }
       .planner-summary { margin: 0; color: var(--muted); line-height: 1.7; font-size: 0.96rem; }
 
@@ -99,25 +112,25 @@
       .route-content h3 { margin: 0 0 12px; font-size: 1.12rem; }
       .route-content p { margin: 0 0 14px; color: var(--muted); line-height: 1.75; }
       .route-meta { display: flex; flex-wrap: wrap; gap: 10px; }
-      .meta-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: #eef5ff; color: #475569; font-size: 0.82rem; }
+      .meta-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.1); color: #fff; font-size: 0.82rem; }
 
       .attraction-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-      .attraction-pill { min-width: 150px; text-align: center; }
+      .attraction-pill { min-width: 150px; text-align: center; color: #fff; background: rgba(255,255,255,0.08); border-radius: 999px; padding: 10px 12px; }
 
       .reviews-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .review-card { padding: 24px; border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); }
       .review-card h3 { margin: 0 0 12px; font-size: 1rem; }
       .review-stars { display: inline-flex; gap: 4px; color: #f59e0b; margin-bottom: 14px; }
       .review-card p { margin: 0 0 16px; color: var(--muted); line-height: 1.75; }
-      .review-meta { display: flex; align-items: center; gap: 10px; color: #475569; font-weight: 600; }
+      .review-meta { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.84); font-weight: 600; }
       .review-avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, rgba(37,99,235,0.16), rgba(20,184,166,0.16)); color: var(--accent); font-weight: 800; }
 
       .map-section { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 20px; }
       .map-card { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); }
       .map-card iframe { min-height: 420px; }
       .info-card { padding: 24px; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
-      .info-card h3 { margin: 0; }
-      .info-card li { color: var(--muted); line-height: 1.8; }
+      .info-card h3 { margin: 0; color: #fff; }
+      .info-card li { color: rgba(255,255,255,0.8); line-height: 1.8; }
 
       .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 18px; padding: 28px 0 40px; color: rgba(255,255,255,0.8); }
       .footer-inner a { color: rgba(255,255,255,0.78); text-decoration: none; }
@@ -138,6 +151,10 @@
     <header class="topbar">
       <div class="page-width topbar-inner">
         <div class="logo">Drive KKTC</div>
+        <form class="search-bar" id="topSearchForm">
+          <input id="topSearchInput" type="search" placeholder="Search a place or landmark" aria-label="Search a place" />
+          <button type="submit">Search</button>
+        </form>
         <nav class="nav-links" aria-label="Top navigation">
           <a href="#routes" data-i18n="navRoutes">Routes</a>
           <a href="#planner" data-i18n="navPlanner">Planner</a>
@@ -155,9 +172,10 @@
             <div class="hero-badge" data-i18n="heroBadge">Premium Northern Cyprus Routes</div>
             <h1 class="hero-title" data-i18n="heroTitle">Build unforgettable Northern Cyprus journeys.</h1>
             <p class="hero-subtitle" data-i18n="heroSubtitle">From Kyrenia Harbour and Bellapais to Famagusta Old Town and Karpaz Peninsula, discover the best private routes, family centers, teen hotspots, and hidden gem itineraries.</p>
+            <p class="search-summary" id="searchSummary">Search a place and route it directly into Google Maps while we keep your travel flow visible.</p>
             <div class="hero-actions">
-              <button class="btn primary" onclick="document.getElementById('heroPlanButton').scrollIntoView({ behavior: 'smooth' });" data-i18n="heroCta">Create My Route</button>
-              <a class="btn secondary" href="#routes" data-i18n="heroCta2">Browse Routes</a>
+              <button class="btn primary" id="createRouteBtn" data-i18n="heroCta">Create My Route</button>
+              <button class="btn secondary" id="browseMoreBtn" type="button" data-i18n="heroCta2">Browse more places</button>
             </div>
             <div class="hero-highlights">
               <div class="card-surface">
@@ -206,6 +224,25 @@
         </div>
       </section>
 
+      <section class="section" id="search-results-section">
+        <div class="section-title">
+          <div>
+            <h2>Search & suggested routes</h2>
+            <p>Use the search bar to explore northern Cyprus places, see recommended routes, and open results directly on Google Maps.</p>
+          </div>
+        </div>
+        <div class="search-results-panel">
+          <div class="results-panel">
+            <h3>Search results</h3>
+            <div id="resultList" class="result-list"></div>
+          </div>
+          <div class="route-suggestions-panel">
+            <h3>Suggested routes</h3>
+            <div id="routeSuggestions" class="suggestion-grid"></div>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="why">
         <div class="section-title">
           <h2 data-i18n="whyTitle">Why choose Drive KKTC?</h2>
@@ -223,6 +260,28 @@
           <div class="feature-block">
             <h3 data-i18n="featureC">Review-first trust</h3>
             <p data-i18n="featureCText">Trip decisions backed by actual guest feedback from Northern Cyprus destinations.</p>
+          </div>
+        </div>
+        <div class="expert-routes">
+          <div class="expert-route" data-query="Kyrenia Harbour Northern Cyprus routes">
+            <h3>Kyrenia Harbour & Castle</h3>
+            <p>Historic coastal route from harbour to St. Hilarion Castle, perfect for first-time visitors.</p>
+          </div>
+          <div class="expert-route" data-query="Famagusta Northern Cyprus routes">
+            <h3>Famagusta Old City</h3>
+            <p>Cultural route through ancient walls, ghost town views, and seaside highlights.</p>
+          </div>
+          <div class="expert-route" data-query="Bellapais Village Northern Cyprus routes">
+            <h3>Bellapais Village & Monastery</h3>
+            <p>Scenic village route with historic cafés, hillside views, and tranquil atmosphere.</p>
+          </div>
+          <div class="expert-route" data-query="Karpaz Peninsula Northern Cyprus routes">
+            <h3>Karpaz Peninsula</h3>
+            <p>Nature route featuring golden beaches, wild donkeys, and remote coastal scenery.</p>
+          </div>
+          <div class="expert-route" data-query="Lefke Northern Cyprus routes">
+            <h3>Lefke Countryside</h3>
+            <p>Green route through villages, citrus groves, and peaceful rural coastal drives.</p>
           </div>
         </div>
       </section>
@@ -428,8 +487,18 @@
     </main>
 
     <footer class="footer-inner">
-      <div>© 2026 Drive KKTC</div>
-      <div data-i18n="footerText">Your Northern Cyprus travel planning partner.</div>
+      <div class="footer-brand">
+        <div class="logo">Drive KKTC</div>
+        <p>Maps-driven route planning, local inspiration, and powerful daily adventure ideas in one dark travel experience.</p>
+      </div>
+      <div class="footer-links">
+        <button class="footer-action" id="browseMoreFooterBtn" type="button">Browse more places</button>
+        <button class="footer-action" id="exploreKyreniaBtn" type="button">Explore Kyrenia routes</button>
+      </div>
+      <div class="footer-info">
+        <p data-i18n="footerText">Your Northern Cyprus travel planning partner.</p>
+        <p>Designed with modern route discovery, searchable place lookup, and dedicated Google Maps direction.</p>
+      </div>
     </footer>
 
     <button class="back-to-top" aria-label="Back to top">↑</button>
@@ -445,7 +514,7 @@
           heroTitle: 'Build unforgettable Northern Cyprus journeys.',
           heroSubtitle: 'From Kyrenia Harbour and Bellapais to Famagusta Old Town and Karpaz Peninsula, discover the best private routes, family centers, teen hotspots, and hidden gem itineraries.',
           heroCta: 'Create My Route',
-          heroCta2: 'Browse Routes',
+          heroCta2: 'Browse more places',
           heroCard1Title: 'Hidden gem discovery',
           heroCard1Text: 'Find local beaches, ancient ruins, and teen-friendly hangouts across Northern Cyprus.',
           heroCard2Title: 'Custom schedule builder',
@@ -771,32 +840,25 @@
       });
       backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+      const topSearchForm = document.getElementById('topSearchForm');
+      const topSearchInput = document.getElementById('topSearchInput');
+      const searchSummary = document.getElementById('searchSummary');
+
+      topSearchForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const query = topSearchInput.value.trim();
+        if (!query) {
+          searchSummary.textContent = 'Please type a place, landmark, or city to search on Google Maps.';
+          return;
+        }
+        const mapsQuery = encodeURIComponent(query);
+        const mapsUrl = `https://www.google.com/maps/search/${mapsQuery}`;
+        searchSummary.textContent = `Searching for “${query}” in Google Maps...`; 
+        window.open(mapsUrl, '_blank', 'noopener');
+      });
+
       translatePage('en');
       updatePlanSummary();
-l('[data-count]');
-      const counterObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target;
-          const target = Number(el.dataset.count);
-          let current = 0;
-          const step = Math.max(1, Math.ceil(target / 30));
-          const timer = setInterval(() => {
-            current += step;
-            if (current >= target) {
-              el.textContent = target;
-              clearInterval(timer);
-              observer.unobserve(el);
-            } else {
-              el.textContent = current;
-            }
-          }, 40);
-        });
-      }, { threshold: 0.6 });
-
-      counters.forEach((counter) => counterObserver.observe(counter));
-      updateText('en');
-      updatePlan();
     </script>
   </body>
 </html>
