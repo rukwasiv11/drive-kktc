@@ -3,8 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Drive KKTC | Northern Cyprus Adventure Planner</title>
-    <meta name="description" content="Discover Northern Cyprus with premium routes, family-friendly plans, teen hotspots, and real reviews from northern Cyprus." />
+    <title>Northern Cyprus Routes | North Route – Kyrenia, Famagusta & Karpaz Travel Planner</title>
+    <meta name="description" content="Plan Northern Cyprus routes with North Route: Kyrenia, Famagusta, Karpaz and Bellapais itineraries, live Google Maps, route duration, difficulty, weather, reviews and travel tips for driving KKTC." />
+    <meta name="keywords" content="Northern Cyprus routes, North Route, KKTC travel, Kyrenia routes, Famagusta travel, Karpaz Peninsula, Bellapais, Northern Cyprus road trip, things to do Northern Cyprus, Northern Cyprus itinerary" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="North Route" />
+    <link rel="canonical" href="https://www.northroute.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Northern Cyprus Routes | North Route Travel Planner" />
+    <meta property="og:description" content="Discover the best Northern Cyprus routes: Kyrenia, Famagusta, Karpaz and Bellapais itineraries with maps, reviews and travel tips." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=75" />
+    <meta property="og:url" content="https://www.northroute.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
@@ -132,6 +142,15 @@
       .info-card h3 { margin: 0; color: #fff; }
       .info-card li { color: rgba(255,255,255,0.8); line-height: 1.8; }
 
+      .map-side-stack { display: flex; flex-direction: column; gap: 18px; }
+      .campus-card { display: flex; gap: 16px; align-items: center; padding: 22px; border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); }
+      .campus-logo { flex-shrink: 0; width: 56px; height: 56px; }
+      .campus-logo svg { width: 100%; height: 100%; display: block; }
+      .campus-card-body h3 { margin: 0 0 8px; font-size: 1.02rem; color: #fff; }
+      .campus-card-body p { margin: 0 0 14px; color: var(--muted); line-height: 1.6; font-size: 0.88rem; }
+      .campus-directions-btn { border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.1); color: #fff; border-radius: 999px; padding: 10px 16px; cursor: pointer; font-weight: 700; font-size: 0.82rem; }
+      .campus-directions-btn:hover { background: rgba(255,255,255,0.18); }
+
       .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 18px; padding: 28px 0 40px; color: rgba(255,255,255,0.8); }
       .footer-inner a { color: rgba(255,255,255,0.78); text-decoration: none; }
       .back-to-top { position: fixed; right: 20px; bottom: 20px; width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border: none; color: #fff; cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 16px 32px rgba(0,0,0,0.2); }
@@ -145,12 +164,139 @@
         .topbar-inner { flex-direction: column; align-items: stretch; }
         .hero-title { font-size: 3rem; }
       }
+
+      /* ---------- Breadcrumbs ---------- */
+      .breadcrumb-bar { padding: 14px 0 0; }
+      .breadcrumb-nav ol { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; font-size: 0.85rem; color: rgba(255,255,255,0.65); }
+      .breadcrumb-nav li { display: flex; align-items: center; gap: 8px; }
+      .breadcrumb-nav li:not(:last-child)::after { content: '›'; color: rgba(255,255,255,0.4); }
+      .breadcrumb-nav a { color: rgba(255,255,255,0.72); }
+      .breadcrumb-nav a:hover { color: #fff; }
+      .breadcrumb-nav li[aria-current="page"] { color: #fff; font-weight: 600; }
+
+      /* ---------- Extra route filters ---------- */
+      .filter-row select.filter-select { border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.1); color: #fff; border-radius: 999px; padding: 12px 18px; cursor: pointer; }
+      .filter-row select.filter-select option { color: #0b1220; }
+
+      /* ---------- Route card extras ---------- */
+      .route-extra-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+      .duration-pill { background: rgba(37,99,235,0.18); }
+      .cost-pill { background: rgba(20,184,166,0.18); }
+      .difficulty-pill { font-weight: 700; }
+      .difficulty-easy { background: rgba(34,197,94,0.22); color: #86efac; }
+      .difficulty-moderate { background: rgba(249,115,22,0.22); color: #fdba74; }
+      .difficulty-hard { background: rgba(239,68,68,0.24); color: #fca5a5; }
+
+      .route-rating { display: flex; align-items: center; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+      .stars-input { display: inline-flex; gap: 2px; font-size: 1.1rem; cursor: pointer; }
+      .stars-input span { color: rgba(255,255,255,0.28); transition: color 120ms ease; }
+      .stars-input span.filled, .stars-input:hover span.hovered { color: #f59e0b; }
+      .rating-summary { font-size: 0.82rem; color: var(--muted); }
+
+      .route-map-toggle { margin-top: 12px; }
+      .map-toggle-btn { width: 100%; padding: 10px 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.06); color: #fff; cursor: pointer; font-weight: 600; font-size: 0.86rem; }
+      .map-toggle-btn:hover { background: rgba(255,255,255,0.12); }
+      .route-mini-map { margin-top: 10px; border-radius: 14px; overflow: hidden; height: 200px; }
+      .route-mini-map iframe { width: 100%; height: 100%; border: 0; }
+      .route-mini-map[hidden] { display: none; }
+
+      .share-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+      .share-label { font-size: 0.78rem; color: var(--muted); }
+      .share-btn { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.08); color: #fff; cursor: pointer; font-size: 0.82rem; display: inline-flex; align-items: center; justify-content: center; }
+      .share-btn:hover { background: rgba(255,255,255,0.18); }
+
+      /* ---------- Testimonial strip ---------- */
+      .trust-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding: 26px 30px; border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); margin-bottom: 24px; }
+      .trust-score { display: flex; align-items: center; gap: 14px; }
+      .trust-score .score { font-size: 2.4rem; font-weight: 800; }
+      .trust-score .score-meta { color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+      .trust-quotes { display: flex; gap: 16px; flex-wrap: wrap; }
+      .trust-quote { max-width: 240px; font-size: 0.85rem; color: rgba(255,255,255,0.85); line-height: 1.6; font-style: italic; }
+
+      /* ---------- Amenities ---------- */
+      .amenities-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+      .amenity-col { padding: 22px; border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); }
+      .amenity-col h3 { margin: 0 0 14px; display: flex; align-items: center; gap: 8px; }
+      .amenity-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+      .amenity-col li { display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 0.9rem; border-bottom: 1px dashed rgba(255,255,255,0.12); padding-bottom: 10px; }
+      .amenity-col li span.dist { color: rgba(255,255,255,0.6); font-size: 0.78rem; white-space: nowrap; }
+
+      /* ---------- Weather ---------- */
+      .weather-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+      .weather-card { padding: 20px; border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); text-align: center; }
+      .weather-card h3 { margin: 0 0 10px; font-size: 1rem; }
+      .weather-temp { font-size: 2.2rem; font-weight: 800; margin: 6px 0; }
+      .weather-desc { color: var(--muted); font-size: 0.85rem; }
+
+      /* ---------- FAQ ---------- */
+      .faq-list { display: flex; flex-direction: column; gap: 12px; }
+      .faq-item { border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow); overflow: hidden; }
+      .faq-item summary { list-style: none; cursor: pointer; padding: 18px 22px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+      .faq-item summary::-webkit-details-marker { display: none; }
+      .faq-item summary::after { content: '+'; font-size: 1.3rem; color: var(--accent-2); flex-shrink: 0; }
+      .faq-item[open] summary::after { content: '−'; }
+      .faq-item p { margin: 0; padding: 0 22px 20px; color: var(--muted); line-height: 1.75; }
+
+      /* ---------- Blog ---------- */
+      .blog-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
+      .blog-card { border-radius: var(--radius-lg); overflow: hidden; background: var(--surface); box-shadow: var(--shadow); }
+      .blog-card img { height: 160px; object-fit: cover; }
+      .blog-card-body { padding: 18px 20px 22px; }
+      .blog-card-body h3 { margin: 0 0 10px; font-size: 1.02rem; }
+      .blog-card-body p { margin: 0 0 14px; color: var(--muted); line-height: 1.7; font-size: 0.9rem; }
+      .blog-read-more { font-weight: 700; color: var(--accent-2); }
+
+      /* ---------- Emergency & safety ---------- */
+      .emergency-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .emergency-numbers { display: flex; flex-direction: column; gap: 10px; }
+      .emergency-numbers li { display: flex; justify-content: space-between; padding: 12px 16px; border-radius: 14px; background: rgba(239,68,68,0.12); color: #fff; }
+      .emergency-numbers li strong { color: #fca5a5; }
+      .safety-tips { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; color: var(--muted); }
+      .safety-tips li { padding-left: 22px; position: relative; line-height: 1.6; }
+      .safety-tips li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-2); font-weight: 800; }
+
+      /* ---------- Social share (page-level) ---------- */
+      .page-share-bar { display: flex; align-items: center; gap: 10px; }
+
+      .expert-routes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+      .expert-route { padding: 22px; border-radius: var(--radius-lg); background: var(--surface); box-shadow: var(--shadow); cursor: pointer; transition: transform 200ms ease, background 200ms ease; }
+      .expert-route:hover { transform: translateY(-3px); background: var(--surface-soft); }
+      .expert-route h3 { margin: 0 0 10px; font-size: 1.02rem; display: flex; align-items: center; gap: 8px; }
+      .expert-route h3::before { content: '🧭'; font-size: 0.95rem; }
+      .expert-route p { margin: 0; color: var(--muted); line-height: 1.7; font-size: 0.92rem; }
+      .expert-route.custom-route { border: 1px solid rgba(20,184,166,0.4); background: linear-gradient(135deg, rgba(37,99,235,0.14), rgba(20,184,166,0.14)); }
+      .expert-route.custom-route p { color: rgba(255,255,255,0.92); font-weight: 600; }
+      .expert-route .route-hint { display: block; margin-top: 10px; font-size: 0.76rem; color: var(--accent-2); font-weight: 700; }
+
+      @media (max-width: 1080px) {
+        .expert-routes { grid-template-columns: 1fr; }
+        .amenities-grid, .weather-grid, .blog-grid, .emergency-grid { grid-template-columns: 1fr; }
+        .trust-strip { flex-direction: column; align-items: flex-start; }
+      }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "North Route",
+      "url": "https://www.northroute.com/",
+      "description": "Northern Cyprus route planner covering Kyrenia, Famagusta, Bellapais and Karpaz Peninsula itineraries.",
+      "areaServed": {
+        "@type": "Place",
+        "name": "Northern Cyprus (KKTC)"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "975"
+      }
+    }
+    </script>
   </head>
   <body>
-    <header class="topbar">
+    <header class="topbar" id="top">
       <div class="page-width topbar-inner">
-        <div class="logo">Drive KKTC</div>
+        <div class="logo">North Route</div>
         <form class="search-bar" id="topSearchForm">
           <input id="topSearchInput" type="search" placeholder="Search a place or landmark" aria-label="Search a place" />
           <button type="submit">Search</button>
@@ -164,6 +310,23 @@
         </nav>
       </div>
     </header>
+
+    <nav class="page-width breadcrumb-bar breadcrumb-nav" aria-label="Breadcrumb">
+      <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="#top" itemprop="item"><span itemprop="name" data-i18n="crumbHome">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="#routes" itemprop="item"><span itemprop="name" data-i18n="crumbRoutes">Northern Cyprus Routes</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+          <span itemprop="name" data-i18n="crumbCurrent">North Route Planner</span>
+          <meta itemprop="position" content="3" />
+        </li>
+      </ol>
+    </nav>
 
     <main class="page-width">
       <section class="hero">
@@ -193,7 +356,7 @@
             </div>
           </div>
           <div class="hero-right">
-            <img class="hero-image" src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80" alt="Northern Cyprus coast" />
+            <img class="hero-image" src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=70" alt="Northern Cyprus coast" loading="eager" fetchpriority="high" decoding="async" width="1200" height="680" />
             <section class="planner-panel" id="planner">
               <header>
                 <h2 data-i18n="plannerPanelTitle">Instant route planner</h2>
@@ -245,7 +408,7 @@
 
       <section class="section" id="why">
         <div class="section-title">
-          <h2 data-i18n="whyTitle">Why choose Drive KKTC?</h2>
+          <h2 data-i18n="whyTitle">Why choose North Route?</h2>
           <p data-i18n="whySubtitle">A complete travel page styled like modern booking platforms, with real Northern Cyprus routes and guest reviews.</p>
         </div>
         <div class="feature-blocks">
@@ -283,6 +446,14 @@
             <h3>Lefke Countryside</h3>
             <p>Green route through villages, citrus groves, and peaceful rural coastal drives.</p>
           </div>
+          <div class="expert-route custom-route"
+               data-origin="European University of Lefke (EUL), Northern Cyprus"
+               data-destination="Kyrenia Harbour, Northern Cyprus"
+               data-waypoints="Aphrodite Beachfront Restaurant, Northern Cyprus|St. Hilarion Castle, Northern Cyprus|Escape Beach Club, Northern Cyprus">
+            <h3>Campus to Harbour Student Route</h3>
+            <p>European University of Lefke (EUL) → Aphrodite Beachfront Restaurant → St. Hilarion Castle → Escape Beach Club → Kyrenia Harbour.</p>
+            <span class="route-hint">Tap for full driving directions →</span>
+          </div>
         </div>
       </section>
 
@@ -300,10 +471,22 @@
           <button class="filter-button" data-filter="culture" data-i18n="filterCulture">Culture</button>
           <button class="filter-button" data-filter="nature" data-i18n="filterNature">Nature</button>
           <button class="filter-button" data-filter="beach" data-i18n="filterBeach">Beach</button>
+          <select class="filter-select" id="distanceFilter" aria-label="Filter by distance">
+            <option value="all" data-i18n="distAll">Any distance</option>
+            <option value="short" data-i18n="distShort">Under 2 hours</option>
+            <option value="medium" data-i18n="distMedium">2–4 hours</option>
+            <option value="long" data-i18n="distLong">Full day</option>
+          </select>
+          <select class="filter-select" id="difficultyFilter" aria-label="Filter by difficulty">
+            <option value="all" data-i18n="diffAllOption">Any difficulty</option>
+            <option value="easy" data-i18n="diffEasy">Easy</option>
+            <option value="moderate" data-i18n="diffModerate">Moderate</option>
+            <option value="hard" data-i18n="diffHard">Hard</option>
+          </select>
         </div>
         <div class="routes-grid">
-          <article class="route-card" data-category="culture">
-            <div class="route-image"><img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1000&q=80" alt="St. Hilarion Castle" /></div>
+          <article class="route-card" data-category="culture" data-difficulty="moderate" data-distance="medium">
+            <div class="route-image"><img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=640&q=60" alt="St. Hilarion Castle" loading="lazy" decoding="async" width="640" height="420" /></div>
             <div class="route-content">
               <h3 data-i18n="route1Title">St. Hilarion Castle & Kyrenia Coast</h3>
               <p data-i18n="route1Text">Historic castle ruins with coastal views, perfect for photographers and culture seekers.</p>
@@ -312,11 +495,33 @@
                 <span class="meta-pill" data-i18n="routeMetaCastle">Landmarks</span>
                 <span class="meta-pill" data-i18n="routeMetaView">Scenic</span>
               </div>
+            
+              <div class="route-extra-meta">
+                <span class="meta-pill duration-pill">⏱ <span data-i18n="routeDuration1">Half day · ~2.5h drive</span></span>
+                <span class="meta-pill difficulty-pill difficulty-moderate">⚡ <span data-i18n="diffModerate">Moderate</span></span>
+                <span class="meta-pill cost-pill">💰 <span data-i18n="routeCost1">≈150 TRY entrance fee</span></span>
+              </div>
+              <div class="route-rating" data-route-id="route1">
+                <div class="stars-input" data-route="route1" role="radiogroup" aria-label="Rate this route">
+                  <span data-star="1">★</span><span data-star="2">★</span><span data-star="3">★</span><span data-star="4">★</span><span data-star="5">★</span>
+                </div>
+                <span class="rating-summary" data-base-rating="4.8" data-base-count="132">4.8 (132 <span data-i18n="reviewsWord">reviews</span>)</span>
+              </div>
+              <div class="route-map-toggle">
+                <button class="map-toggle-btn" data-query="St Hilarion Castle Northern Cyprus" type="button"><span data-i18n="showOnMap">📍 Show on Google Maps</span></button>
+                <div class="route-mini-map" hidden></div>
+              </div>
+              <div class="share-row">
+                <span class="share-label" data-i18n="shareLabel">Share:</span>
+                <button class="share-btn" data-network="facebook" data-title="St. Hilarion Castle & Kyrenia Coast" type="button" aria-label="Share on Facebook">f</button>
+                <button class="share-btn" data-network="twitter" data-title="St. Hilarion Castle & Kyrenia Coast" type="button" aria-label="Share on X">𝕏</button>
+                <button class="share-btn" data-network="whatsapp" data-title="St. Hilarion Castle & Kyrenia Coast" type="button" aria-label="Share on WhatsApp">☏</button>
+              </div>
             </div>
           </article>
 
-          <article class="route-card" data-category="family">
-            <div class="route-image"><img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1000&q=80" alt="Family friendly northern cyprus" /></div>
+          <article class="route-card" data-category="family" data-difficulty="easy" data-distance="short">
+            <div class="route-image"><img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=640&q=60" alt="Family friendly northern cyprus" loading="lazy" decoding="async" width="640" height="420" /></div>
             <div class="route-content">
               <h3 data-i18n="route2Title">Kyrenia Harbour & Family Fun</h3>
               <p data-i18n="route2Text">A relaxed family route with harbour walks, local restaurants and calm mini activities.</p>
@@ -325,11 +530,33 @@
                 <span class="meta-pill" data-i18n="routeMetaHarbour">Harbour</span>
                 <span class="meta-pill" data-i18n="routeMetaLunch">Easy dining</span>
               </div>
+            
+              <div class="route-extra-meta">
+                <span class="meta-pill duration-pill">⏱ <span data-i18n="routeDuration2">2–3 hours</span></span>
+                <span class="meta-pill difficulty-pill difficulty-easy">⚡ <span data-i18n="diffEasy">Easy</span></span>
+                <span class="meta-pill cost-pill">💰 <span data-i18n="routeCost2">Free harbour walk · dining extra</span></span>
+              </div>
+              <div class="route-rating" data-route-id="route2">
+                <div class="stars-input" data-route="route2" role="radiogroup" aria-label="Rate this route">
+                  <span data-star="1">★</span><span data-star="2">★</span><span data-star="3">★</span><span data-star="4">★</span><span data-star="5">★</span>
+                </div>
+                <span class="rating-summary" data-base-rating="4.9" data-base-count="211">4.9 (211 <span data-i18n="reviewsWord">reviews</span>)</span>
+              </div>
+              <div class="route-map-toggle">
+                <button class="map-toggle-btn" data-query="Kyrenia Harbour Northern Cyprus" type="button"><span data-i18n="showOnMap">📍 Show on Google Maps</span></button>
+                <div class="route-mini-map" hidden></div>
+              </div>
+              <div class="share-row">
+                <span class="share-label" data-i18n="shareLabel">Share:</span>
+                <button class="share-btn" data-network="facebook" data-title="Kyrenia Harbour & Family Fun" type="button" aria-label="Share on Facebook">f</button>
+                <button class="share-btn" data-network="twitter" data-title="Kyrenia Harbour & Family Fun" type="button" aria-label="Share on X">𝕏</button>
+                <button class="share-btn" data-network="whatsapp" data-title="Kyrenia Harbour & Family Fun" type="button" aria-label="Share on WhatsApp">☏</button>
+              </div>
             </div>
           </article>
 
-          <article class="route-card" data-category="teens">
-            <div class="route-image"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=80" alt="Beach club northern cyprus" /></div>
+          <article class="route-card" data-category="teens" data-difficulty="moderate" data-distance="medium">
+            <div class="route-image"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=640&q=60" alt="Beach club northern cyprus" loading="lazy" decoding="async" width="640" height="420" /></div>
             <div class="route-content">
               <h3 data-i18n="route3Title">Escape Beach Club & Water Sports</h3>
               <p data-i18n="route3Text">High-energy teens route with beach clubs, watersports, and evening social spots.</p>
@@ -338,11 +565,33 @@
                 <span class="meta-pill" data-i18n="routeMetaAction">Active</span>
                 <span class="meta-pill" data-i18n="routeMetaSunset">Vibrant</span>
               </div>
+            
+              <div class="route-extra-meta">
+                <span class="meta-pill duration-pill">⏱ <span data-i18n="routeDuration3">Half day · ~3h</span></span>
+                <span class="meta-pill difficulty-pill difficulty-moderate">⚡ <span data-i18n="diffModerate">Moderate</span></span>
+                <span class="meta-pill cost-pill">💰 <span data-i18n="routeCost3">Beach club entry from 100 TRY</span></span>
+              </div>
+              <div class="route-rating" data-route-id="route3">
+                <div class="stars-input" data-route="route3" role="radiogroup" aria-label="Rate this route">
+                  <span data-star="1">★</span><span data-star="2">★</span><span data-star="3">★</span><span data-star="4">★</span><span data-star="5">★</span>
+                </div>
+                <span class="rating-summary" data-base-rating="4.7" data-base-count="98">4.7 (98 <span data-i18n="reviewsWord">reviews</span>)</span>
+              </div>
+              <div class="route-map-toggle">
+                <button class="map-toggle-btn" data-query="Escape Beach Club Northern Cyprus" type="button"><span data-i18n="showOnMap">📍 Show on Google Maps</span></button>
+                <div class="route-mini-map" hidden></div>
+              </div>
+              <div class="share-row">
+                <span class="share-label" data-i18n="shareLabel">Share:</span>
+                <button class="share-btn" data-network="facebook" data-title="Escape Beach Club & Water Sports" type="button" aria-label="Share on Facebook">f</button>
+                <button class="share-btn" data-network="twitter" data-title="Escape Beach Club & Water Sports" type="button" aria-label="Share on X">𝕏</button>
+                <button class="share-btn" data-network="whatsapp" data-title="Escape Beach Club & Water Sports" type="button" aria-label="Share on WhatsApp">☏</button>
+              </div>
             </div>
           </article>
 
-          <article class="route-card" data-category="beach">
-            <div class="route-image"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80" alt="Sunset beach northern cyprus" /></div>
+          <article class="route-card" data-category="beach" data-difficulty="easy" data-distance="medium">
+            <div class="route-image"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=640&q=60" alt="Sunset beach northern cyprus" loading="lazy" decoding="async" width="640" height="420" /></div>
             <div class="route-content">
               <h3 data-i18n="route4Title">Aphrodite Beachfront & Sunset</h3>
               <p data-i18n="route4Text">A romantic beach route with prime sunset spots, seaside dining, and seaside strolls.</p>
@@ -351,11 +600,33 @@
                 <span class="meta-pill" data-i18n="routeMetaDining">Food</span>
                 <span class="meta-pill" data-i18n="routeMetaRelax">Relaxed</span>
               </div>
+            
+              <div class="route-extra-meta">
+                <span class="meta-pill duration-pill">⏱ <span data-i18n="routeDuration4">2–4 hours</span></span>
+                <span class="meta-pill difficulty-pill difficulty-easy">⚡ <span data-i18n="diffEasy">Easy</span></span>
+                <span class="meta-pill cost-pill">💰 <span data-i18n="routeCost4">Free beach access · dining extra</span></span>
+              </div>
+              <div class="route-rating" data-route-id="route4">
+                <div class="stars-input" data-route="route4" role="radiogroup" aria-label="Rate this route">
+                  <span data-star="1">★</span><span data-star="2">★</span><span data-star="3">★</span><span data-star="4">★</span><span data-star="5">★</span>
+                </div>
+                <span class="rating-summary" data-base-rating="4.8" data-base-count="156">4.8 (156 <span data-i18n="reviewsWord">reviews</span>)</span>
+              </div>
+              <div class="route-map-toggle">
+                <button class="map-toggle-btn" data-query="Alagadi Turtle Beach Northern Cyprus" type="button"><span data-i18n="showOnMap">📍 Show on Google Maps</span></button>
+                <div class="route-mini-map" hidden></div>
+              </div>
+              <div class="share-row">
+                <span class="share-label" data-i18n="shareLabel">Share:</span>
+                <button class="share-btn" data-network="facebook" data-title="Aphrodite Beachfront & Sunset" type="button" aria-label="Share on Facebook">f</button>
+                <button class="share-btn" data-network="twitter" data-title="Aphrodite Beachfront & Sunset" type="button" aria-label="Share on X">𝕏</button>
+                <button class="share-btn" data-network="whatsapp" data-title="Aphrodite Beachfront & Sunset" type="button" aria-label="Share on WhatsApp">☏</button>
+              </div>
             </div>
           </article>
 
-          <article class="route-card" data-category="nature">
-            <div class="route-image"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1000&q=80" alt="Karpaz Peninsula" /></div>
+          <article class="route-card" data-category="nature" data-difficulty="hard" data-distance="long">
+            <div class="route-image"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=640&q=60" alt="Karpaz Peninsula" loading="lazy" decoding="async" width="640" height="420" /></div>
             <div class="route-content">
               <h3 data-i18n="route5Title">Karpaz Peninsula & Golden Beach</h3>
               <p data-i18n="route5Text">A nature route with untouched beaches, wild donkeys and peaceful coastal scenery.</p>
@@ -364,11 +635,33 @@
                 <span class="meta-pill" data-i18n="routeMetaBeach">Beach</span>
                 <span class="meta-pill" data-i18n="routeMetaCalm">Calm</span>
               </div>
+            
+              <div class="route-extra-meta">
+                <span class="meta-pill duration-pill">⏱ <span data-i18n="routeDuration5">Full day · 5–6h</span></span>
+                <span class="meta-pill difficulty-pill difficulty-hard">⚡ <span data-i18n="diffHard">Hard</span></span>
+                <span class="meta-pill cost-pill">💰 <span data-i18n="routeCost5">Free entry · fuel & food extra</span></span>
+              </div>
+              <div class="route-rating" data-route-id="route5">
+                <div class="stars-input" data-route="route5" role="radiogroup" aria-label="Rate this route">
+                  <span data-star="1">★</span><span data-star="2">★</span><span data-star="3">★</span><span data-star="4">★</span><span data-star="5">★</span>
+                </div>
+                <span class="rating-summary" data-base-rating="4.9" data-base-count="174">4.9 (174 <span data-i18n="reviewsWord">reviews</span>)</span>
+              </div>
+              <div class="route-map-toggle">
+                <button class="map-toggle-btn" data-query="Karpaz Peninsula Golden Beach Northern Cyprus" type="button"><span data-i18n="showOnMap">📍 Show on Google Maps</span></button>
+                <div class="route-mini-map" hidden></div>
+              </div>
+              <div class="share-row">
+                <span class="share-label" data-i18n="shareLabel">Share:</span>
+                <button class="share-btn" data-network="facebook" data-title="Karpaz Peninsula & Golden Beach" type="button" aria-label="Share on Facebook">f</button>
+                <button class="share-btn" data-network="twitter" data-title="Karpaz Peninsula & Golden Beach" type="button" aria-label="Share on X">𝕏</button>
+                <button class="share-btn" data-network="whatsapp" data-title="Karpaz Peninsula & Golden Beach" type="button" aria-label="Share on WhatsApp">☏</button>
+              </div>
             </div>
           </article>
 
-          <article class="route-card" data-category="culture">
-            <div class="route-image"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80" alt="Bellapais village" /></div>
+          <article class="route-card" data-category="culture" data-difficulty="easy" data-distance="short">
+            <div class="route-image"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=640&q=60" alt="Bellapais village" loading="lazy" decoding="async" width="640" height="420" /></div>
             <div class="route-content">
               <h3 data-i18n="route6Title">Bellapais Village & Monastery</h3>
               <p data-i18n="route6Text">A cultural village route with historic architecture, cosy cafés and hillside views.</p>
@@ -377,11 +670,33 @@
                 <span class="meta-pill" data-i18n="routeMetaHistory">History</span>
                 <span class="meta-pill" data-i18n="routeMetaPhoto">Photo</span>
               </div>
+            
+              <div class="route-extra-meta">
+                <span class="meta-pill duration-pill">⏱ <span data-i18n="routeDuration6">~2 hours</span></span>
+                <span class="meta-pill difficulty-pill difficulty-easy">⚡ <span data-i18n="diffEasy">Easy</span></span>
+                <span class="meta-pill cost-pill">💰 <span data-i18n="routeCost6">≈60 TRY monastery entry</span></span>
+              </div>
+              <div class="route-rating" data-route-id="route6">
+                <div class="stars-input" data-route="route6" role="radiogroup" aria-label="Rate this route">
+                  <span data-star="1">★</span><span data-star="2">★</span><span data-star="3">★</span><span data-star="4">★</span><span data-star="5">★</span>
+                </div>
+                <span class="rating-summary" data-base-rating="4.7" data-base-count="89">4.7 (89 <span data-i18n="reviewsWord">reviews</span>)</span>
+              </div>
+              <div class="route-map-toggle">
+                <button class="map-toggle-btn" data-query="Bellapais Monastery Northern Cyprus" type="button"><span data-i18n="showOnMap">📍 Show on Google Maps</span></button>
+                <div class="route-mini-map" hidden></div>
+              </div>
+              <div class="share-row">
+                <span class="share-label" data-i18n="shareLabel">Share:</span>
+                <button class="share-btn" data-network="facebook" data-title="Bellapais Village & Monastery" type="button" aria-label="Share on Facebook">f</button>
+                <button class="share-btn" data-network="twitter" data-title="Bellapais Village & Monastery" type="button" aria-label="Share on X">𝕏</button>
+                <button class="share-btn" data-network="whatsapp" data-title="Bellapais Village & Monastery" type="button" aria-label="Share on WhatsApp">☏</button>
+              </div>
             </div>
           </article>
 
-          <article class="route-card" data-category="culture">
-            <div class="route-image"><img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1000&q=80" alt="Famagusta old city" /></div>
+          <article class="route-card" data-category="culture" data-difficulty="moderate" data-distance="medium">
+            <div class="route-image"><img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=640&q=60" alt="Famagusta old city" loading="lazy" decoding="async" width="640" height="420" /></div>
             <div class="route-content">
               <h3 data-i18n="route7Title">Famagusta Old City & Varosha</h3>
               <p data-i18n="route7Text">Historic city route with ancient walls, ghost town views and coastal heritage.</p>
@@ -390,11 +705,33 @@
                 <span class="meta-pill" data-i18n="routeMetaHistory2">History</span>
                 <span class="meta-pill" data-i18n="routeMetaExplore">Explore</span>
               </div>
+            
+              <div class="route-extra-meta">
+                <span class="meta-pill duration-pill">⏱ <span data-i18n="routeDuration7">Half day · ~3h</span></span>
+                <span class="meta-pill difficulty-pill difficulty-moderate">⚡ <span data-i18n="diffModerate">Moderate</span></span>
+                <span class="meta-pill cost-pill">💰 <span data-i18n="routeCost7">Free walls · Varosha viewing free</span></span>
+              </div>
+              <div class="route-rating" data-route-id="route7">
+                <div class="stars-input" data-route="route7" role="radiogroup" aria-label="Rate this route">
+                  <span data-star="1">★</span><span data-star="2">★</span><span data-star="3">★</span><span data-star="4">★</span><span data-star="5">★</span>
+                </div>
+                <span class="rating-summary" data-base-rating="4.6" data-base-count="112">4.6 (112 <span data-i18n="reviewsWord">reviews</span>)</span>
+              </div>
+              <div class="route-map-toggle">
+                <button class="map-toggle-btn" data-query="Famagusta Old City Varosha Northern Cyprus" type="button"><span data-i18n="showOnMap">📍 Show on Google Maps</span></button>
+                <div class="route-mini-map" hidden></div>
+              </div>
+              <div class="share-row">
+                <span class="share-label" data-i18n="shareLabel">Share:</span>
+                <button class="share-btn" data-network="facebook" data-title="Famagusta Old City & Varosha" type="button" aria-label="Share on Facebook">f</button>
+                <button class="share-btn" data-network="twitter" data-title="Famagusta Old City & Varosha" type="button" aria-label="Share on X">𝕏</button>
+                <button class="share-btn" data-network="whatsapp" data-title="Famagusta Old City & Varosha" type="button" aria-label="Share on WhatsApp">☏</button>
+              </div>
             </div>
           </article>
 
-          <article class="route-card" data-category="nature">
-            <div class="route-image"><img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1000&q=80" alt="Salamis ruins" /></div>
+          <article class="route-card" data-category="nature" data-difficulty="moderate" data-distance="short">
+            <div class="route-image"><img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=640&q=60" alt="Salamis ruins" loading="lazy" decoding="async" width="640" height="420" /></div>
             <div class="route-content">
               <h3 data-i18n="route8Title">Salamis Ruins & Nature Trail</h3>
               <p data-i18n="route8Text">Nature and archaeology meet along a spacious route with ruins, coastline and outdoor stops.</p>
@@ -402,6 +739,28 @@
                 <span class="meta-pill" data-i18n="routeMetaRuins">Ruins</span>
                 <span class="meta-pill" data-i18n="routeMetaTrail">Trail</span>
                 <span class="meta-pill" data-i18n="routeMetaCalm2">Nature</span>
+              </div>
+            
+              <div class="route-extra-meta">
+                <span class="meta-pill duration-pill">⏱ <span data-i18n="routeDuration8">2–3 hours</span></span>
+                <span class="meta-pill difficulty-pill difficulty-moderate">⚡ <span data-i18n="diffModerate">Moderate</span></span>
+                <span class="meta-pill cost-pill">💰 <span data-i18n="routeCost8">≈50 TRY entrance fee</span></span>
+              </div>
+              <div class="route-rating" data-route-id="route8">
+                <div class="stars-input" data-route="route8" role="radiogroup" aria-label="Rate this route">
+                  <span data-star="1">★</span><span data-star="2">★</span><span data-star="3">★</span><span data-star="4">★</span><span data-star="5">★</span>
+                </div>
+                <span class="rating-summary" data-base-rating="4.7" data-base-count="103">4.7 (103 <span data-i18n="reviewsWord">reviews</span>)</span>
+              </div>
+              <div class="route-map-toggle">
+                <button class="map-toggle-btn" data-query="Salamis Ruins Northern Cyprus" type="button"><span data-i18n="showOnMap">📍 Show on Google Maps</span></button>
+                <div class="route-mini-map" hidden></div>
+              </div>
+              <div class="share-row">
+                <span class="share-label" data-i18n="shareLabel">Share:</span>
+                <button class="share-btn" data-network="facebook" data-title="Salamis Ruins & Nature Trail" type="button" aria-label="Share on Facebook">f</button>
+                <button class="share-btn" data-network="twitter" data-title="Salamis Ruins & Nature Trail" type="button" aria-label="Share on X">𝕏</button>
+                <button class="share-btn" data-network="whatsapp" data-title="Salamis Ruins & Nature Trail" type="button" aria-label="Share on WhatsApp">☏</button>
               </div>
             </div>
           </article>
@@ -427,10 +786,57 @@
         </div>
       </section>
 
+      <section class="section" id="amenities">
+        <div class="section-title">
+          <h2 data-i18n="amenitiesTitle">Nearby hotels, restaurants & fuel stations</h2>
+          <p data-i18n="amenitiesSubtitle">Practical stops for your Northern Cyprus route — places to stay, eat, and refuel along the way.</p>
+        </div>
+        <div class="amenities-grid">
+          <div class="amenity-col">
+            <h3 data-i18n="amenitiesHotels">🏨 Hotels</h3>
+            <ul>
+              <li><span data-i18n="hotel1">Colony Hotel, Kyrenia</span><span class="dist">1.2 km</span></li>
+              <li><span data-i18n="hotel2">Bellapais Gardens Hotel</span><span class="dist">3.4 km</span></li>
+              <li><span data-i18n="hotel3">Salamis Bay Conti, Famagusta</span><span class="dist">2.1 km</span></li>
+              <li><span data-i18n="hotel4">Karpaz Arch Houses</span><span class="dist">4.8 km</span></li>
+            </ul>
+          </div>
+          <div class="amenity-col">
+            <h3 data-i18n="amenitiesRestaurants">🍽️ Restaurants</h3>
+            <ul>
+              <li><span data-i18n="rest1">Niazi's, Kyrenia Harbour</span><span class="dist">0.6 km</span></li>
+              <li><span data-i18n="rest2">Bellapais Monastery Village Restaurant</span><span class="dist">0.3 km</span></li>
+              <li><span data-i18n="rest3">Petek Pastanesi, Famagusta</span><span class="dist">1.8 km</span></li>
+              <li><span data-i18n="rest4">Golden Beach Bar & Grill, Karpaz</span><span class="dist">0.4 km</span></li>
+            </ul>
+          </div>
+          <div class="amenity-col">
+            <h3 data-i18n="amenitiesFuel">⛽ Fuel stations</h3>
+            <ul>
+              <li><span data-i18n="fuel1">Petrol Ofisi, Kyrenia Ring Road</span><span class="dist">2.0 km</span></li>
+              <li><span data-i18n="fuel2">Shell, Girne–Lefkoşa Highway</span><span class="dist">5.5 km</span></li>
+              <li><span data-i18n="fuel3">Total, Famagusta Entrance</span><span class="dist">1.4 km</span></li>
+              <li><span data-i18n="fuel4">Türkiye Petrolleri, Karpaz Road</span><span class="dist">6.2 km</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="reviews">
         <div class="section-title">
           <h2 data-i18n="reviewsTitle">Reviews from northern Cyprus travelers</h2>
           <p data-i18n="reviewsSubtitle">Real guest feedback from actual Northern Cyprus routes and experiences.</p>
+        </div>
+        <div class="trust-strip">
+          <div class="trust-score">
+            <div class="score">4.8★</div>
+            <div class="score-meta" data-i18n="trustScoreMeta">Average rating from 975 verified traveler reviews across all North Route routes.</div>
+          </div>
+          <div class="trust-quotes">
+            <p class="trust-quote" data-i18n="testimonial1">"Best way we found to plan a Northern Cyprus road trip — routes, maps and reviews all in one place." — Aylin</p>
+            <p class="trust-quote" data-i18n="testimonial2">"The difficulty and duration tags saved us from an overly ambitious first day." — Daniel</p>
+            <p class="trust-quote" data-i18n="testimonial3">"Loved seeing nearby fuel stations and restaurants right next to each route." — Selin</p>
+          </div>
         </div>
         <div class="reviews-grid">
           <article class="review-card">
@@ -461,16 +867,148 @@
         </div>
         <div class="map-section">
           <div class="map-card">
-            <iframe src="https://www.google.com/maps?q=Kyrenia,Northern%20Cyprus&z=10&output=embed" title="Northern Cyprus route map"></iframe>
+            <iframe src="https://www.google.com/maps?q=Kyrenia,Northern%20Cyprus&z=10&output=embed" title="Northern Cyprus route map" loading="lazy"></iframe>
           </div>
-          <div class="info-card">
-            <h3 data-i18n="mapDetailsTitle">What you can do here</h3>
-            <ul>
-              <li data-i18n="mapDetail1">Explore coastal routes and city charms across the island.</li>
-              <li data-i18n="mapDetail2">Pin the best family, teen and romantic route ideas.</li>
-              <li data-i18n="mapDetail3">Use reviews and local insights to choose your ideal day.</li>
-            </ul>
+          <div class="map-side-stack">
+            <div class="info-card">
+              <h3 data-i18n="mapDetailsTitle">What you can do here</h3>
+              <ul>
+                <li data-i18n="mapDetail1">Explore coastal routes and city charms across the island.</li>
+                <li data-i18n="mapDetail2">Pin the best family, teen and romantic route ideas.</li>
+                <li data-i18n="mapDetail3">Use reviews and local insights to choose your ideal day.</li>
+              </ul>
+            </div>
+            <div class="campus-card">
+              <div class="campus-logo" aria-hidden="true">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="31" fill="url(#campusGrad)" />
+                  <path d="M32 15 L54 24 L32 33 L10 24 Z" fill="#ffffff" opacity="0.95" />
+                  <path d="M20 28 V40 C20 44 26 47 32 47 C38 47 44 44 44 40 V28" stroke="#ffffff" stroke-width="2.4" fill="none" opacity="0.9" />
+                  <line x1="54" y1="24" x2="54" y2="36" stroke="#ffffff" stroke-width="2.4" />
+                  <defs>
+                    <linearGradient id="campusGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                      <stop offset="0" stop-color="#2563eb" />
+                      <stop offset="1" stop-color="#14b8a6" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="campus-card-body">
+                <h3 data-i18n="campusCardTitle">Lefke Avrupa Üniversitesi (EUL)</h3>
+                <p data-i18n="campusCardText">European University of Lefke campus — starting point for the Campus to Harbour student route.</p>
+                <button class="campus-directions-btn" data-query="European University of Lefke Northern Cyprus" type="button">
+                  <span data-i18n="campusDirections">📍 Get directions</span>
+                </button>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      <section class="section" id="weather">
+        <div class="section-title">
+          <h2 data-i18n="weatherTitle">Destination weather</h2>
+          <p data-i18n="weatherSubtitle">Live conditions for the main Northern Cyprus route hubs, so you can plan the right day.</p>
+        </div>
+        <div class="weather-grid" id="weatherGrid">
+          <div class="weather-card" data-lat="35.3417" data-lon="33.3167" data-name-en="Kyrenia" data-name-tr="Girne">
+            <h3 data-i18n="weatherKyrenia">Kyrenia</h3>
+            <div class="weather-temp">--°C</div>
+            <div class="weather-desc" data-i18n="weatherLoading">Loading forecast…</div>
+          </div>
+          <div class="weather-card" data-lat="35.1264" data-lon="33.9391" data-name-en="Famagusta" data-name-tr="Mağusa">
+            <h3 data-i18n="weatherFamagusta">Famagusta</h3>
+            <div class="weather-temp">--°C</div>
+            <div class="weather-desc" data-i18n="weatherLoading">Loading forecast…</div>
+          </div>
+          <div class="weather-card" data-lat="35.6000" data-lon="34.3833" data-name-en="Karpaz Peninsula" data-name-tr="Karpaz Yarımadası">
+            <h3 data-i18n="weatherKarpaz">Karpaz Peninsula</h3>
+            <div class="weather-temp">--°C</div>
+            <div class="weather-desc" data-i18n="weatherLoading">Loading forecast…</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="section-title">
+          <h2 data-i18n="faqTitle">Frequently asked questions</h2>
+          <p data-i18n="faqSubtitle">Everything travelers ask before driving KKTC and building a Northern Cyprus route.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary data-i18n="faq1Q">Do I need an international driving permit to drive in Northern Cyprus?</summary>
+            <p data-i18n="faq1A">Most visitors can drive with their home country license for short stays; an International Driving Permit is recommended if your license isn't in Latin script.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq2Q">Which side of the road do people drive on in KKTC?</summary>
+            <p data-i18n="faq2A">Northern Cyprus follows left-hand driving, the same as the UK and the Republic of Cyprus.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq3Q">How long does the Karpaz Peninsula route take?</summary>
+            <p data-i18n="faq3A">The Karpaz Peninsula route is a full-day drive, roughly 5–6 hours round trip including stops at Golden Beach.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq4Q">Are the routes suitable for families with children?</summary>
+            <p data-i18n="faq4A">Yes — use the Family filter to see easy-difficulty routes such as Kyrenia Harbour and Bellapais Village.</p>
+          </details>
+          <details class="faq-item">
+            <summary data-i18n="faq5Q">Do route pages show real-time traffic on Google Maps?</summary>
+            <p data-i18n="faq5A">Each route includes a live embedded Google Map you can open directly for real-time directions and traffic.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="blog">
+        <div class="section-title">
+          <h2 data-i18n="blogTitle">Travel tips blog</h2>
+          <p data-i18n="blogSubtitle">Short reads to help you plan a smarter Northern Cyprus route.</p>
+        </div>
+        <div class="blog-grid">
+          <article class="blog-card">
+            <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=480&q=60" alt="Coastal road in Northern Cyprus" loading="lazy" decoding="async" width="480" height="160" />
+            <div class="blog-card-body">
+              <h3 data-i18n="blog1Title">5 tips for driving KKTC's coastal roads</h3>
+              <p data-i18n="blog1Text">From fuel stops to scenic pull-offs, here's how to make the most of Kyrenia's coastal drive.</p>
+              <a href="#" class="blog-read-more" data-i18n="blogReadMore">Read more →</a>
+            </div>
+          </article>
+          <article class="blog-card">
+            <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=480&q=60" alt="Karpaz Peninsula wild donkeys" loading="lazy" decoding="async" width="480" height="160" />
+            <div class="blog-card-body">
+              <h3 data-i18n="blog2Title">Best time of day to visit Karpaz Golden Beach</h3>
+              <p data-i18n="blog2Text">Avoid the midday heat and catch the wild donkeys with this simple timing guide.</p>
+              <a href="#" class="blog-read-more" data-i18n="blogReadMore">Read more →</a>
+            </div>
+          </article>
+          <article class="blog-card">
+            <img src="https://images.unsplash.com/photo-1526481280695-3c469364eff4?auto=format&fit=crop&w=480&q=60" alt="Bellapais village cafe" loading="lazy" decoding="async" width="480" height="160" />
+            <div class="blog-card-body">
+              <h3 data-i18n="blog3Title">A half-day itinerary for Bellapais village</h3>
+              <p data-i18n="blog3Text">Pair the monastery visit with the right café stop and viewpoint for a relaxed half day.</p>
+              <a href="#" class="blog-read-more" data-i18n="blogReadMore">Read more →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="safety">
+        <div class="section-title">
+          <h2 data-i18n="safetyTitle">Emergency contacts & safety tips</h2>
+          <p data-i18n="safetySubtitle">Keep these numbers handy before you set off on any Northern Cyprus route.</p>
+        </div>
+        <div class="emergency-grid">
+          <ul class="emergency-numbers">
+            <li><strong data-i18n="emPolice">Police</strong> <span>155</span></li>
+            <li><strong data-i18n="emAmbulance">Ambulance</strong> <span>112</span></li>
+            <li><strong data-i18n="emFire">Fire department</strong> <span>199</span></li>
+            <li><strong data-i18n="emCoastguard">Coastguard</strong> <span>158</span></li>
+          </ul>
+          <ul class="safety-tips">
+            <li data-i18n="safety1">Carry a printed or offline copy of your route in areas with weak signal.</li>
+            <li data-i18n="safety2">Fill up fuel before rural routes like Karpaz — stations are spaced further apart.</li>
+            <li data-i18n="safety3">Roads use left-hand driving; take extra care at roundabouts if you're used to the right.</li>
+            <li data-i18n="safety4">Check the weather card above before coastal or hillside routes in winter months.</li>
+          </ul>
         </div>
       </section>
 
@@ -488,7 +1026,7 @@
 
     <footer class="footer-inner">
       <div class="footer-brand">
-        <div class="logo">Drive KKTC</div>
+        <div class="logo">North Route</div>
         <p>Maps-driven route planning, local inspiration, and powerful daily adventure ideas in one dark travel experience.</p>
       </div>
       <div class="footer-links">
@@ -498,10 +1036,50 @@
       <div class="footer-info">
         <p data-i18n="footerText">Your Northern Cyprus travel planning partner.</p>
         <p>Designed with modern route discovery, searchable place lookup, and dedicated Google Maps direction.</p>
+        <div class="page-share-bar">
+          <span class="share-label" data-i18n="shareLabel">Share:</span>
+          <button class="share-btn" data-network="facebook" data-title="North Route — Northern Cyprus Routes" type="button" aria-label="Share page on Facebook">f</button>
+          <button class="share-btn" data-network="twitter" data-title="North Route — Northern Cyprus Routes" type="button" aria-label="Share page on X">𝕏</button>
+          <button class="share-btn" data-network="whatsapp" data-title="North Route — Northern Cyprus Routes" type="button" aria-label="Share page on WhatsApp">☏</button>
+        </div>
       </div>
     </footer>
 
     <button class="back-to-top" aria-label="Back to top">↑</button>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do I need an international driving permit to drive in Northern Cyprus?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Most visitors can drive with their home country license for short stays; an International Driving Permit is recommended if your license isn't in Latin script." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which side of the road do people drive on in KKTC?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Northern Cyprus follows left-hand driving, the same as the UK and the Republic of Cyprus." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does the Karpaz Peninsula route take?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The Karpaz Peninsula route is a full-day drive, roughly 5-6 hours round trip including stops at Golden Beach." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the routes suitable for families with children?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, use the Family filter to see easy-difficulty routes such as Kyrenia Harbour and Bellapais Village." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do route pages show real-time traffic on Google Maps?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Each route includes a live embedded Google Map you can open directly for real-time directions and traffic." }
+        }
+      ]
+    }
+    </script>
 
     <script>
       const translations = {
@@ -535,7 +1113,7 @@
           moodAdventure: 'Adventure & sea sports',
           planButton: 'Create My Route',
           planSummary: 'Designed for Northern Cyprus travelers who want easy planning, real place recommendations, and local route flow.',
-          whyTitle: 'Why choose Drive KKTC?',
+          whyTitle: 'Why choose North Route?',
           whySubtitle: 'A complete travel page styled like modern booking platforms, with real Northern Cyprus routes and guest reviews.',
           featureA: 'Local northern Cyprus expertise',
           featureAText: 'Routes built around Kyrenia, Famagusta, Bellapais, Karpaz and Lefke with real local insights.',
@@ -613,11 +1191,102 @@
           mapDetail1: 'Explore coastal routes and city charms across the island.',
           mapDetail2: 'Pin the best family, teen and romantic route ideas.',
           mapDetail3: 'Use reviews and local insights to choose your ideal day.',
+          campusCardTitle: 'Lefke Avrupa Üniversitesi (EUL)',
+          campusCardText: 'European University of Lefke campus — starting point for the Campus to Harbour student route.',
+          campusDirections: '📍 Get directions',
           finalTitle: 'Ready to plan a Northern Cyprus adventure?',
           finalItem1: 'Save routes for family days, teen outings, cultural trips or romantic getaways.',
           finalItem2: 'Use real Northern Cyprus reviews and place names to enhance trust and local accuracy.',
           finalItem3: 'Create a schedule that connects every stop with ease and a modern experience feel.',
-          footerText: 'Your Northern Cyprus travel planning partner.'
+          footerText: 'Your Northern Cyprus travel planning partner.',
+          crumbHome: 'Home',
+          crumbRoutes: 'Northern Cyprus Routes',
+          crumbCurrent: 'North Route Planner',
+          distAll: 'Any distance',
+          distShort: 'Under 2 hours',
+          distMedium: '2\u20134 hours',
+          distLong: 'Full day',
+          diffAllOption: 'Any difficulty',
+          diffEasy: 'Easy',
+          diffModerate: 'Moderate',
+          diffHard: 'Hard',
+          routeDuration1: 'Half day \u00b7 ~2.5h drive',
+          routeDuration2: '2\u20133 hours',
+          routeDuration3: 'Half day \u00b7 ~3h',
+          routeDuration4: '2\u20134 hours',
+          routeDuration5: 'Full day \u00b7 5\u20136h',
+          routeDuration6: '~2 hours',
+          routeDuration7: 'Half day \u00b7 ~3h',
+          routeDuration8: '2\u20133 hours',
+          routeCost1: '\u2248150 TRY entrance fee',
+          routeCost2: 'Free harbour walk \u00b7 dining extra',
+          routeCost3: 'Beach club entry from 100 TRY',
+          routeCost4: 'Free beach access \u00b7 dining extra',
+          routeCost5: 'Free entry \u00b7 fuel & food extra',
+          routeCost6: '\u224860 TRY monastery entry',
+          routeCost7: 'Free walls \u00b7 Varosha viewing free',
+          routeCost8: '\u224850 TRY entrance fee',
+          reviewsWord: 'reviews',
+          showOnMap: '\ud83d\udccd Show on Google Maps',
+          shareLabel: 'Share:',
+          amenitiesTitle: 'Nearby hotels, restaurants & fuel stations',
+          amenitiesSubtitle: 'Practical stops for your Northern Cyprus route \u2014 places to stay, eat, and refuel along the way.',
+          amenitiesHotels: '\ud83c\udfe8 Hotels',
+          amenitiesRestaurants: '\ud83c\udf7d\ufe0f Restaurants',
+          amenitiesFuel: '\u26fd Fuel stations',
+          hotel1: 'Colony Hotel, Kyrenia',
+          hotel2: 'Bellapais Gardens Hotel',
+          hotel3: 'Salamis Bay Conti, Famagusta',
+          hotel4: 'Karpaz Arch Houses',
+          rest1: "Niazi's, Kyrenia Harbour",
+          rest2: 'Bellapais Monastery Village Restaurant',
+          rest3: 'Petek Pastanesi, Famagusta',
+          rest4: 'Golden Beach Bar & Grill, Karpaz',
+          fuel1: 'Petrol Ofisi, Kyrenia Ring Road',
+          fuel2: 'Shell, Girne\u2013Lefko\u015fa Highway',
+          fuel3: 'Total, Famagusta Entrance',
+          fuel4: 'T\u00fcrkiye Petrolleri, Karpaz Road',
+          trustScoreMeta: 'Average rating from 975 verified traveler reviews across all North Route routes.',
+          testimonial1: '"Best way we found to plan a Northern Cyprus road trip \u2014 routes, maps and reviews all in one place." \u2014 Aylin',
+          testimonial2: '"The difficulty and duration tags saved us from an overly ambitious first day." \u2014 Daniel',
+          testimonial3: '"Loved seeing nearby fuel stations and restaurants right next to each route." \u2014 Selin',
+          weatherTitle: 'Destination weather',
+          weatherSubtitle: 'Live conditions for the main Northern Cyprus route hubs, so you can plan the right day.',
+          weatherKyrenia: 'Kyrenia',
+          weatherFamagusta: 'Famagusta',
+          weatherKarpaz: 'Karpaz Peninsula',
+          weatherLoading: 'Loading forecast\u2026',
+          faqTitle: 'Frequently asked questions',
+          faqSubtitle: "Everything travelers ask before driving KKTC and building a Northern Cyprus route.",
+          faq1Q: 'Do I need an international driving permit to drive in Northern Cyprus?',
+          faq1A: "Most visitors can drive with their home country license for short stays; an International Driving Permit is recommended if your license isn't in Latin script.",
+          faq2Q: 'Which side of the road do people drive on in KKTC?',
+          faq2A: 'Northern Cyprus follows left-hand driving, the same as the UK and the Republic of Cyprus.',
+          faq3Q: 'How long does the Karpaz Peninsula route take?',
+          faq3A: 'The Karpaz Peninsula route is a full-day drive, roughly 5\u20136 hours round trip including stops at Golden Beach.',
+          faq4Q: 'Are the routes suitable for families with children?',
+          faq4A: 'Yes \u2014 use the Family filter to see easy-difficulty routes such as Kyrenia Harbour and Bellapais Village.',
+          faq5Q: 'Do route pages show real-time traffic on Google Maps?',
+          faq5A: 'Each route includes a live embedded Google Map you can open directly for real-time directions and traffic.',
+          blogTitle: 'Travel tips blog',
+          blogSubtitle: "Short reads to help you plan a smarter Northern Cyprus route.",
+          blog1Title: "5 tips for driving KKTC's coastal roads",
+          blog1Text: "From fuel stops to scenic pull-offs, here's how to make the most of Kyrenia's coastal drive.",
+          blog2Title: 'Best time of day to visit Karpaz Golden Beach',
+          blog2Text: 'Avoid the midday heat and catch the wild donkeys with this simple timing guide.',
+          blog3Title: 'A half-day itinerary for Bellapais village',
+          blog3Text: 'Pair the monastery visit with the right caf\u00e9 stop and viewpoint for a relaxed half day.',
+          blogReadMore: 'Read more \u2192',
+          safetyTitle: 'Emergency contacts & safety tips',
+          safetySubtitle: 'Keep these numbers handy before you set off on any Northern Cyprus route.',
+          emPolice: 'Police',
+          emAmbulance: 'Ambulance',
+          emFire: 'Fire department',
+          emCoastguard: 'Coastguard',
+          safety1: 'Carry a printed or offline copy of your route in areas with weak signal.',
+          safety2: 'Fill up fuel before rural routes like Karpaz \u2014 stations are spaced further apart.',
+          safety3: "Roads use left-hand driving; take extra care at roundabouts if you're used to the right.",
+          safety4: 'Check the weather card above before coastal or hillside routes in winter months.',
         },
         tr: {
           navRoutes: 'Rotalar',
@@ -649,7 +1318,7 @@
           moodAdventure: 'Macera & deniz sporları',
           planButton: 'Rota Oluştur',
           planSummary: 'Kuzey Kıbrıs gezginleri için kolay planlama, gerçek yer önerileri ve rota akışı sunar.',
-          whyTitle: 'Neden Drive KKTC?',
+          whyTitle: 'Neden North Route?',
           whySubtitle: 'Modern rezervasyon platformlarını andıran, gerçek Kuzey Kıbrıs rotaları ve müşteri yorumları içeren tam bir sayfa.',
           featureA: 'Kuzey Kıbrıs uzmanlığı',
           featureAText: 'Kyrenia, Mağusa, Bellapais, Karpaz ve Lefke etrafında yerel içgörülerle hazırlanan rotalar.',
@@ -727,11 +1396,102 @@
           mapDetail1: 'Kıyı rotalarını ve şehir cazibelerini keşfedin.',
           mapDetail2: 'En iyi aile, genç ve romantik rota fikirlerini kaydedin.',
           mapDetail3: 'İdeal gününüzü seçmek için yorumlar ve yerel bilgiler kullanın.',
+          campusCardTitle: 'Lefke Avrupa Üniversitesi (EUL)',
+          campusCardText: 'Lefke Avrupa Üniversitesi kampüsü — Kampüsten Limana öğrenci rotasının başlangıç noktası.',
+          campusDirections: '📍 Yol tarifi al',
           finalTitle: 'Kuzey Kıbrıs macerasını planlamaya hazır mısınız?',
           finalItem1: 'Aile günleri, genç gezileri, kültürel turlar veya romantik kaçamaklar için rotalar kaydedin.',
           finalItem2: 'Güven ve yerel doğruluk için gerçek Kuzey Kıbrıs yorumları ve yer adları kullanın.',
           finalItem3: 'Her durağı kolayca bağlayan modern bir program oluşturun.',
-          footerText: 'Kuzey Kıbrıs seyahat planlama ortağınız.'
+          footerText: 'Kuzey Kıbrıs seyahat planlama ortağınız.',
+          crumbHome: 'Ana Sayfa',
+          crumbRoutes: 'Kuzey Kıbrıs Rotaları',
+          crumbCurrent: 'North Route Planlayıcı',
+          distAll: 'Herhangi bir mesafe',
+          distShort: '2 saatten az',
+          distMedium: '2–4 saat',
+          distLong: 'Tam gün',
+          diffAllOption: 'Herhangi bir zorluk',
+          diffEasy: 'Kolay',
+          diffModerate: 'Orta',
+          diffHard: 'Zor',
+          routeDuration1: 'Yarım gün · ~2.5 saat sürüş',
+          routeDuration2: '2–3 saat',
+          routeDuration3: 'Yarım gün · ~3 saat',
+          routeDuration4: '2–4 saat',
+          routeDuration5: 'Tam gün · 5–6 saat',
+          routeDuration6: '~2 saat',
+          routeDuration7: 'Yarım gün · ~3 saat',
+          routeDuration8: '2–3 saat',
+          routeCost1: '≈150 TL giriş ücreti',
+          routeCost2: 'Liman yürüyüşü ücretsiz · yemek ayrı',
+          routeCost3: 'Plaj kulübü girişi 100 TL’den başlar',
+          routeCost4: 'Plaja giriş ücretsiz · yemek ayrı',
+          routeCost5: 'Giriş ücretsiz · yakıt ve yemek ayrı',
+          routeCost6: '≈60 TL manastır girişi',
+          routeCost7: 'Surlar ücretsiz · Varosha manzarası ücretsiz',
+          routeCost8: '≈50 TL giriş ücreti',
+          reviewsWord: 'değerlendirme',
+          showOnMap: '📍 Google Haritalar’da göster',
+          shareLabel: 'Paylaş:',
+          amenitiesTitle: 'Yakındaki oteller, restoranlar ve akaryakıt istasyonları',
+          amenitiesSubtitle: 'Rotanız için pratik duraklar — kalacak, yemek yiyecek ve yakıt alacak yerler.',
+          amenitiesHotels: '🏨 Oteller',
+          amenitiesRestaurants: '🍽️ Restoranlar',
+          amenitiesFuel: '⛽ Akaryakıt istasyonları',
+          hotel1: 'Colony Hotel, Girne',
+          hotel2: 'Bellapais Gardens Hotel',
+          hotel3: 'Salamis Bay Conti, Mağusa',
+          hotel4: 'Karpaz Arch Houses',
+          rest1: "Niazi's, Girne Limanı",
+          rest2: 'Bellapais Manastırı Köy Restoranı',
+          rest3: 'Petek Pastanesi, Mağusa',
+          rest4: 'Golden Beach Bar & Grill, Karpaz',
+          fuel1: 'Petrol Ofisi, Girne Çevre Yolu',
+          fuel2: 'Shell, Girne–Lefkoşa Karayolu',
+          fuel3: 'Total, Mağusa Girişi',
+          fuel4: 'Türkiye Petrolleri, Karpaz Yolu',
+          trustScoreMeta: 'Tüm North Route rotalarında 975 doğrulanmış gezgin yorumundan ortalama puan.',
+          testimonial1: '"Kuzey Kıbrıs karayolu gezisi planlamak için bulduğumuz en iyi yöntem — rotalar, haritalar ve yorumlar tek bir yerde." — Aylin',
+          testimonial2: '"Zorluk ve süre etiketleri bizi ilk günden çok iddialı bir plandan kurtardı." — Daniel',
+          testimonial3: '"Her rotanın yanında yakındaki akaryakıt istasyonlarını ve restoranları görmek harikaydı." — Selin',
+          weatherTitle: 'Varış noktası hava durumu',
+          weatherSubtitle: 'Doğru günü planlamanız için ana Kuzey Kıbrıs rota merkezlerinin canlı koşulları.',
+          weatherKyrenia: 'Girne',
+          weatherFamagusta: 'Mağusa',
+          weatherKarpaz: 'Karpaz Yarımadası',
+          weatherLoading: 'Tahmin yükleniyor…',
+          faqTitle: 'Sıkça sorulan sorular',
+          faqSubtitle: 'KKTC’de araç kullanmadan ve rota oluşturmadan önce gezginlerin sorduğu her şey.',
+          faq1Q: 'Kuzey Kıbrıs’ta araç kullanmak için uluslararası ehliyete ihtiyacım var mı?',
+          faq1A: 'Çoğu ziyaretçi kısa süreli konaklamalarda kendi ülke ehliyetiyle araç kullanabilir; ehliyetiniz Latin alfabesiyle değilse Uluslararası Sürücü Belgesi önerilir.',
+          faq2Q: 'KKTC’de yolun hangi tarafından araç kullanılır?',
+          faq2A: 'Kuzey Kıbrıs’ta, İngiltere ve Kıbrıs Cumhuriyeti’nde olduğu gibi soldan trafik uygulanır.',
+          faq3Q: 'Karpaz Yarımadası rotası ne kadar sürer?',
+          faq3A: 'Karpaz Yarımadası rotası, Altın Plaj duraklarıyla birlikte yaklaşık 5–6 saat süren tam günlük bir gezidir.',
+          faq4Q: 'Rotalar çocuklu aileler için uygun mu?',
+          faq4A: 'Evet — Girne Limanı ve Bellapais Köyü gibi kolay zorluktaki rotaları görmek için Aile filtresini kullanın.',
+          faq5Q: 'Rota sayfaları Google Haritalar’da gerçek zamanlı trafik gösteriyor mu?',
+          faq5A: 'Her rota, gerçek zamanlı yön ve trafik için doğrudan açabileceğiniz canlı bir Google Haritası içerir.',
+          blogTitle: 'Seyahat ipuçları blogu',
+          blogSubtitle: 'Daha akıllı bir Kuzey Kıbrıs rotası planlamanıza yardımcı olacak kısa yazılar.',
+          blog1Title: 'KKTC’nin kıyı yollarında araç kullanmak için 5 ipucu',
+          blog1Text: 'Yakıt duraklarından manzaralı mola noktalarına, Girne’nin kıyı sürüşünden en iyi şekilde yararlanmanın yolları.',
+          blog2Title: 'Karpaz Altın Plaj’ı ziyaret etmek için günün en iyi saati',
+          blog2Text: 'Öğlen sıcağından kaçının ve bu basit zamanlama rehberiyle yabani eşekleri yakalayın.',
+          blog3Title: 'Bellapais köyü için yarım günlük bir program',
+          blog3Text: 'Manastır ziyaretini doğru kafe durağı ve manzara noktasıyla eşleştirerek rahat bir yarım gün geçirin.',
+          blogReadMore: 'Devamını oku →',
+          safetyTitle: 'Acil durum numaraları ve güvenlik ipuçları',
+          safetySubtitle: 'Herhangi bir Kuzey Kıbrıs rotasına çıkmadan önce bu numaraları hazır bulundurun.',
+          emPolice: 'Polis',
+          emAmbulance: 'Ambulans',
+          emFire: 'İtfaiye',
+          emCoastguard: 'Sahil Güvenlik',
+          safety1: 'Sinyalin zayıf olduğu bölgelerde rotanızın basılı veya çevrimdışı bir kopyasını taşıyın.',
+          safety2: 'Karpaz gibi kırsal rotalardan önce yakıt doldurun — istasyonlar arası mesafe daha fazladır.',
+          safety3: 'Yollarda soldan trafik uygulanır; sağdan sürüşe alışkınsanız kavşaklarda dikkatli olun.',
+          safety4: 'Kış aylarında kıyı veya tepe rotalarından önce yukarıdaki hava durumu kartına bakın.',
         }
       };
 
@@ -762,16 +1522,140 @@
 
       langToggle.addEventListener('click', () => translatePage(currentLang === 'en' ? 'tr' : 'en'));
 
+      const distanceFilter = document.getElementById('distanceFilter');
+      const difficultyFilter = document.getElementById('difficultyFilter');
+      let activeCategory = 'all';
+
+      function applyFilters() {
+        const distanceValue = distanceFilter ? distanceFilter.value : 'all';
+        const difficultyValue = difficultyFilter ? difficultyFilter.value : 'all';
+        routeCards.forEach((card) => {
+          const category = card.dataset.category;
+          const distance = card.dataset.distance;
+          const difficulty = card.dataset.difficulty;
+          const matchesCategory = activeCategory === 'all' || activeCategory === category;
+          const matchesDistance = distanceValue === 'all' || distanceValue === distance;
+          const matchesDifficulty = difficultyValue === 'all' || difficultyValue === difficulty;
+          card.style.display = matchesCategory && matchesDistance && matchesDifficulty ? 'block' : 'none';
+        });
+      }
+
       filterButtons.forEach((button) => {
         button.addEventListener('click', () => {
           filterButtons.forEach((btn) => btn.classList.remove('active'));
           button.classList.add('active');
-          const filter = button.dataset.filter;
-          routeCards.forEach((card) => {
-            const category = card.dataset.category;
-            card.style.display = filter === 'all' || filter === category ? 'block' : 'none';
-          });
+          activeCategory = button.dataset.filter;
+          applyFilters();
         });
+      });
+      if (distanceFilter) distanceFilter.addEventListener('change', applyFilters);
+      if (difficultyFilter) difficultyFilter.addEventListener('change', applyFilters);
+
+      // ---- Campus card: open EUL location in Google Maps ----
+      const campusBtn = document.querySelector('.campus-directions-btn');
+      if (campusBtn) {
+        campusBtn.addEventListener('click', () => {
+          const query = encodeURIComponent(campusBtn.dataset.query);
+          window.open(`https://www.google.com/maps/search/${query}`, '_blank', 'noopener');
+        });
+      }
+
+      // ---- Expert route cards: open Google Maps search or multi-stop directions ----
+      document.querySelectorAll('.expert-route').forEach((card) => {
+        card.addEventListener('click', () => {
+          if (card.dataset.origin && card.dataset.destination) {
+            const origin = encodeURIComponent(card.dataset.origin);
+            const destination = encodeURIComponent(card.dataset.destination);
+            let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
+            if (card.dataset.waypoints) {
+              const waypoints = card.dataset.waypoints.split('|').map((w) => encodeURIComponent(w.trim())).join('|');
+              url += `&waypoints=${waypoints}`;
+            }
+            window.open(url, '_blank', 'noopener');
+          } else if (card.dataset.query) {
+            const query = encodeURIComponent(card.dataset.query);
+            window.open(`https://www.google.com/maps/search/${query}`, '_blank', 'noopener');
+          }
+        });
+      });
+
+      // ---- Route map toggle (Google Maps per route, loaded on demand for performance) ----
+      document.querySelectorAll('.map-toggle-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const wrap = btn.nextElementSibling;
+          const isHidden = wrap.hasAttribute('hidden');
+          if (isHidden) {
+            if (!wrap.dataset.loaded) {
+              const query = encodeURIComponent(btn.dataset.query);
+              const iframe = document.createElement('iframe');
+              iframe.loading = 'lazy';
+              iframe.title = btn.dataset.query;
+              iframe.src = `https://www.google.com/maps?q=${query}&z=13&output=embed`;
+              wrap.appendChild(iframe);
+              wrap.dataset.loaded = 'true';
+            }
+            wrap.removeAttribute('hidden');
+          } else {
+            wrap.setAttribute('hidden', '');
+          }
+        });
+      });
+
+      // ---- Star rating widget (visual, persisted per browser) ----
+      document.querySelectorAll('.stars-input').forEach((widget) => {
+        const routeId = widget.dataset.route;
+        const stars = Array.from(widget.querySelectorAll('span'));
+        const storeKey = `northroute-rating-${routeId}`;
+        const saved = Number(localStorage.getItem(storeKey) || 0);
+        function paint(value) {
+          stars.forEach((s) => s.classList.toggle('filled', Number(s.dataset.star) <= value));
+        }
+        paint(saved);
+        stars.forEach((s) => {
+          s.addEventListener('click', () => {
+            const value = Number(s.dataset.star);
+            localStorage.setItem(storeKey, String(value));
+            paint(value);
+          });
+          s.addEventListener('mouseenter', () => {
+            stars.forEach((st) => st.classList.toggle('hovered', Number(st.dataset.star) <= Number(s.dataset.star)));
+          });
+          s.addEventListener('mouseleave', () => stars.forEach((st) => st.classList.remove('hovered')));
+        });
+      });
+
+      // ---- Social share buttons ----
+      document.querySelectorAll('.share-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const pageUrl = encodeURIComponent(window.location.href);
+          const text = encodeURIComponent(btn.dataset.title || document.title);
+          const network = btn.dataset.network;
+          let shareUrl = '';
+          if (network === 'facebook') shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+          if (network === 'twitter') shareUrl = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${text}`;
+          if (network === 'whatsapp') shareUrl = `https://wa.me/?text=${text}%20${pageUrl}`;
+          if (shareUrl) window.open(shareUrl, '_blank', 'noopener,width=600,height=500');
+        });
+      });
+
+      // ---- Weather (Open-Meteo, no API key required) ----
+      document.querySelectorAll('.weather-card').forEach(async (card) => {
+        const lat = card.dataset.lat;
+        const lon = card.dataset.lon;
+        try {
+          const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+          const data = await res.json();
+          const temp = Math.round(data.current_weather.temperature);
+          const wind = Math.round(data.current_weather.windspeed);
+          card.querySelector('.weather-temp').textContent = `${temp}°C`;
+          const descEl = card.querySelector('.weather-desc');
+          descEl.textContent = currentLang === 'tr' ? `Rüzgar ${wind} km/sa` : `Wind ${wind} km/h`;
+          descEl.removeAttribute('data-i18n');
+        } catch (err) {
+          const descEl = card.querySelector('.weather-desc');
+          descEl.textContent = currentLang === 'tr' ? 'Hava durumu şu an alınamıyor' : 'Weather unavailable right now';
+          descEl.removeAttribute('data-i18n');
+        }
       });
 
       function updatePlanSummary() {
